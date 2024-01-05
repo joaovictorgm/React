@@ -1,12 +1,12 @@
 import Title from "./components/Title"
 import Subtitle  from  "./components/Subtitle"
 import Statustext from "./components/StatusText"
+import styles from "./styles/App.module.css"
 
 export default function App() {
- const status = true
   return(
-    <div>
-      //Criando Novos Componentes
+    <div className={styles.app}>
+      Criando Novos Componentes
       <Title/>
       <Subtitle/>
      <Statustext/>
