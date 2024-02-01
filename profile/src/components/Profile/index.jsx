@@ -1,19 +1,47 @@
+import Title from "./Title"
 import styles from "./styles.module.css"
+import ProfileSection from "./ProfileSection"
+import LinkButton from "../Linkbutton"
+import { useState } from "react"
+
+
 
 export default function Profile(props) {
+    // [valorVariavel, funcaoModificadora]
+    const [followText, setFollowText] = useState("Follow")
+   
+    function handleClick(ev) {
+       alert("Você agora está seguindo!")
+       setFollowText("Following")
+    }
+
     return(
         <div className={styles.container}>
-            
             <img className={styles.avatar}src={props.avatar} alt={props.name}/>
-            <h2 className={styles.name}>{props.name}</h2>
-            <div>{props.bio}</div>
-            <div>{props.email}</div>
-            <div>{props.phone}</div>
-            <div className={styles.links}>
-            <a href={props.githubUrl} target="_blank">Github</a>
-            <a href={props.LinkedinUrl} target="_blank">Linkedin</a>
-            <a href={props.Twiter} target="_blank">Twiter</a>
-            </div>
-        </div>
+            <Title>
+                <span>{props.name}</span>
+                <button
+                className={styles.followButton}
+                onClick={handleClick}
+                >
+                    {followText}
+                </button>
+            </Title>
+           
+            <ProfileSection>{props.bio}</ProfileSection>
+            <ProfileSection>{props.email}</ProfileSection>
+            <ProfileSection>{props.phone}</ProfileSection> 
+            <ProfileSection
+             className={styles.links}
+             id="links-section"
+             data-text="some value"
+             aria-label="social links">
+            
+            <LinkButton href={props.githubUrl}>Github</LinkButton>
+            <LinkButton href={props.LinkedinUrl}>Linkedin</LinkButton>
+            <LinkButton href={props.Twiter}>TwitTer</LinkButton>
+           
+            </ProfileSection>  
+            </div>  
     )
 }
