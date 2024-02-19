@@ -5,16 +5,17 @@ function App() {
   //Declaração de dois estados usando o `useState`hook. `password`armazenará a senha gerada, inicializada como uma string vazia. `copyText`armazenará o texto do botão de cópia, inicializado como Copiar.
   const [password, setPassword] = useState("")
   const [copyText, setCopyText] = useState("Copiar")
+  const [passwordSize,setPassword] = useState(12)
+
   //Declaração de uma função chamada `generate`, responsável por gerar uma senha aleatória
   function generate() {
     //Definição de caracteres que serão usados para gerar a senha
     const characters = "'123456789-=!@#$%¨&*()_+qwertyuiop[asdfghjklç~]zxcvbnm,.;/QWERTYUIOP{ASDFGHJKLÇ}"
-    // Definição do comprimento da senha
-    const length = 12
+   
     //Inicialização da variável `newPassword`que armazenará a nova senha
     let newPassword = ""
     //Laço de repetição para iterar sobre o comprimento da senha
-    for (let i = 0; i < length; i++){
+    for (let i = 0; i < passwordSize; i++){
     //Gera um número aleatório entre 0 e o comprimento da string `characters`, representando a posição de um caractere aleatório
       const position = Math.floor(Math.random() * characters.length)
       newPassword += characters[position]
@@ -34,7 +35,11 @@ function App() {
  return(
    <div className="app">
      <h1>Gerador de senhas</h1>
-     <button onClick={generate}>Gerar!</button>
+     <div>
+       <label htmlFor="passwordSize">Tamanho:</label>
+       <input/>
+     </div>
+     <button onClick={generate}>Gerar senha de {passwordSize}   caracteres!</button>
      <button onClick={copyToClipboard}>{copyText}</button>
      <div>{password}</div>
    </div>
